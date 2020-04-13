@@ -19,7 +19,6 @@ yarn-error.log
 
 /database/factories
 /database/seeds
-/database/.gitignore
 
 /public
 /resources
