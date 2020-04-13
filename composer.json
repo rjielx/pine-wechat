@@ -1,7 +1,14 @@
 {
-    "name": "rjie/pine-wechat",
+    "name": "rjielx/pine-wechat",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "WeChat official account.",
+    "authors": [
+        {
+            "name": "rjielx",
+            "email": "1542235034@qq.com"
+        }
+    ],
+
     "keywords": [
         "framework",
         "laravel"
