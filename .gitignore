@@ -16,7 +16,11 @@ yarn-error.log
 /app
 /bootstrap
 /config
-/database
+
+/database/factories
+/database/seeds
+/database/.gitignore
+
 /public
 /resources
 /routes
