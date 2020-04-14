@@ -14,11 +14,12 @@
         "laravel/framework": "^7.0"
     },
     "autoload": {
-        "classmap": [
-            "src/WechatServer.php"
-        ],
         "psr-4": {
             "pine-wechat\\": "src/"
-        }
+        },
+        "classmap": [
+            "src"
+
+        ]
     }
 }
