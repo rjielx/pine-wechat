@@ -82,8 +82,8 @@ class WechatServer
     {
         if ($code) {
             $api_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?';
-            $api_url = $api_url . 'appid=' . $this->appid;
-            $api_url = $api_url . '&secret=' . $this->secret;
+            $api_url = $api_url . 'appid=' . $this->config['appID'];
+            $api_url = $api_url . '&secret=' . $this->config['appsecret'];
             $api_url = $api_url . '&code=' . $code;
             $api_url = $api_url . '&grant_type=authorization_code';
 
