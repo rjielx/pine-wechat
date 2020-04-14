@@ -97,4 +97,40 @@ class WechatServer
             throw new \LogicException('code为空');
         }
     }
+
+    /**
+     * 网页授权,刷新CodeToken
+     * @param $refresh_token
+     * @return mixed
+     */
+    public function refreshCodeToken($refresh_token)
+    {
+        $api_url = 'https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=' . $this->config['appID'] . '&grant_type=' . $refresh_token . '&refresh_token=REFRESH_TOKEN';
+
+        $respond = $this->client->request('get',$api_url);
+        if ($respond->getStatusCode() === 200) {
+            return json_decode($respond->getBody()->getContents(), true);
+        }else{
+            throw new \LogicException('请求失败');
+        }
+    }
+
+
+    /**
+     * 网页授权，获取用户微信信息
+     *
+     * @param $openId
+     * @return mixed
+     */
+    public function getOpenInfo($openId)
+    {
+        $access_token = $this->getAccessToken();
+
+        $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token=' . $access_token . '&openid=' . $openId . '&lang=zh_CN';
+        $json = file_get_contents($url);
+
+        $result = json_decode($json, true);
+
+        return $result;
+    }
 }
