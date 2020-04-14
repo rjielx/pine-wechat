@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Config;
 use Pine\Wechat\WechatJSSDKServer as wechatJssdk;
 
 /**
- * @method static wechatJssdk wechatJssdk(array $config) 微信js-sdk
+ * @method static wechatJssdk wechatJssdk(string $appid,string $appsecret) 微信js-sdk
  */
 class WechatServer
 {
