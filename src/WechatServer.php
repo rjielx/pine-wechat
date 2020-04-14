@@ -91,8 +91,6 @@ class WechatServer
             if ($respond->getStatusCode() === 200) {
                 $result = json_decode($respond->getBody()->getContents(), true);
 
-                Cache::put('refresh_token', $result['refresh_token'], $result['expires_in']);
-
                 return $result;
             }else{
                 throw new \LogicException('请求失败');
@@ -107,9 +105,14 @@ class WechatServer
      *
      * @return mixed
      */
-    public function refreshCodeToken()
+    /**
+     * 网页授权,刷新CodeToken
+     *
+     * @param $refresh_token
+     * @return mixed
+     */
+    public function refreshCodeToken($refresh_token)
     {
-        $refresh_token = Cache::get('refresh_token');
         if($refresh_token) {
 
             $api_url = 'https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=' . $this->config['appID'] . '&refresh_token=' . $refresh_token . '&grant_type=refresh_token';
@@ -121,7 +124,7 @@ class WechatServer
                 throw new \LogicException('请求失败');
             }
         }else{
-            throw new \LogicException('refresh_token已过期，请重新获取');
+            throw new \LogicException('refresh_token不能为空');
         }
     }
 
