@@ -1,5 +1,5 @@
 <?php
-namespace Rjielx\PineWechat;
+namespace Pine\Wechat;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cache;
