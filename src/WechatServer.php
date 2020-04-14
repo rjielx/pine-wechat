@@ -100,12 +100,13 @@ class WechatServer
 
     /**
      * 网页授权,刷新CodeToken
+     *
      * @param $refresh_token
      * @return mixed
      */
     public function refreshCodeToken($refresh_token)
     {
-        $api_url = 'https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=' . $this->config['appID'] . '&grant_type=' . $refresh_token . '&refresh_token=REFRESH_TOKEN';
+        $api_url = 'https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=' . $this->config['appID'] . '&refresh_token=' . $refresh_token . '&grant_type=refresh_token';
 
         $respond = $this->client->request('get',$api_url);
         if ($respond->getStatusCode() === 200) {
