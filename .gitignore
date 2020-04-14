@@ -19,6 +19,7 @@ yarn-error.log
 
 /database/factories
 /database/seeds
+/database/.gitignore
 
 /public
 /resources
@@ -31,6 +32,8 @@ yarn-error.log
 .gitattributes
 .styleci.yml
 artisan
+
+composer.*
 
 package.json
 phpunit.xml
