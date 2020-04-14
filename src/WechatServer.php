@@ -4,9 +4,15 @@ namespace Pine\Wechat;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cache;
 
+use Illuminate\Support\Facades\Config;
+use Pine\Wechat\WechatJSSDKServer as wechatJssdk;
+
+/**
+ * @method static wechatJssdk wechatJssdk(array $config) 微信js-sdk
+ */
 class WechatServer
 {
-    protected $config = [];
+    protected $config =[] , $configs = [];
 
     protected $client;
 
@@ -17,10 +23,14 @@ class WechatServer
      */
     public function __construct($appid,$appsecret)
     {
-        $this->config = [
+        $config = [
             'appID' => $appid,
             'appsecret' => $appsecret
         ];
+
+        $this->config = $config;
+        $this->configs = new Config($config);
+
         $this->client = new Client();
     }
 

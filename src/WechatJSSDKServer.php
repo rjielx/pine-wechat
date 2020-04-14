@@ -2,9 +2,16 @@
 namespace Pine\Wechat;
 
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
 
-class WechatJSSDKServer extends WechatServer
+class WechatJSSDKServer
 {
+
+    public function __construct(Config $config)
+    {
+
+    }
+
     /**
      * JS-SDK验证
      *
