@@ -1,8 +1,7 @@
 <?php
+namespace Pine\Wechat\Server;
 
-namespace Pine\Wechat;
-
-class WechatWebpageServer extends WechatServer
+trait WXWebpage
 {
     /**
      * 网页授权，用户同意获取code的路径
@@ -107,4 +106,3 @@ class WechatWebpageServer extends WechatServer
         return $result;
     }
 }
-

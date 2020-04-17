@@ -1,9 +1,9 @@
 <?php
-namespace Pine\Wechat;
+namespace Pine\Wechat\Server;
 
 use Illuminate\Support\Facades\Cache;
 
-class WechatJSSDKServer extends WechatServer
+trait WXJsapiJSSDK
 {
     /**
      * JS-SDK验证
@@ -90,6 +90,4 @@ class WechatJSSDKServer extends WechatServer
             'jsApiList' => $jsApiList,
         ]);
     }
-
 }
-
