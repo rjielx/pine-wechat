@@ -1,4 +1,5 @@
 <?php
+
 namespace Pine\Wechat\Server;
 
 trait WXWebpage
@@ -13,7 +14,7 @@ trait WXWebpage
      */
     public function getCodeUri($redirect_uri, $scope = 'snsapi_base', $state = 'STATE')
     {
-        $api_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' . $this->config['appID'] . '&redirect_uri=' . urlencode($redirect_uri) . '&response_type=code&scope=' . $scope . '&state=' . $state . '&connect_redirect=1#wechat_redirect';
+        $api_url = static::$uri . '/connect/oauth2/authorize?appid=' . $this->config['appID'] . '&redirect_uri=' . urlencode($redirect_uri) . '&response_type=code&scope=' . $scope . '&state=' . $state . '&connect_redirect=1#wechat_redirect';
 
         return $api_url;
     }
@@ -40,7 +41,7 @@ trait WXWebpage
     public function getCodeToken($code)
     {
         if ($code) {
-            $api_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?';
+            $api_url = static::$uri . '/sns/oauth2/access_token?';
             $api_url = $api_url . 'appid=' . $this->config['appID'];
             $api_url = $api_url . '&secret=' . $this->config['appsecret'];
             $api_url = $api_url . '&code=' . $code;
@@ -74,7 +75,7 @@ trait WXWebpage
     {
         if ($refresh_token) {
 
-            $api_url = 'https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=' . $this->config['appID'] . '&refresh_token=' . $refresh_token . '&grant_type=refresh_token';
+            $api_url = static::$uri . '/sns/oauth2/refresh_token?appid=' . $this->config['appID'] . '&refresh_token=' . $refresh_token . '&grant_type=refresh_token';
 
             $respond = $this->client->request('get', $api_url);
             if ($respond->getStatusCode() === 200) {
@@ -98,7 +99,7 @@ trait WXWebpage
     {
         $access_token = $this->getAccessToken();
 
-        $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token=' . $access_token . '&openid=' . $openId . '&lang=zh_CN';
+        $url = static::$uri . '/cgi-bin/user/info?access_token=' . $access_token . '&openid=' . $openId . '&lang=zh_CN';
         $json = file_get_contents($url);
 
         $result = json_decode($json, true);

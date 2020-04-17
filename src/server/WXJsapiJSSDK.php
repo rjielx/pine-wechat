@@ -1,4 +1,5 @@
 <?php
+
 namespace Pine\Wechat\Server;
 
 use Illuminate\Support\Facades\Cache;
@@ -16,7 +17,7 @@ trait WXJsapiJSSDK
 
         $time = now()->addSeconds(7200);
         return Cache::remember('ticket', $time, function () use ($access_token) {
-            $uri = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=' . $access_token . '&type=jsapi';
+            $uri = static::$uri . '/cgi-bin/ticket/getticket?access_token=' . $access_token . '&type=jsapi';
             $json = file_get_contents($uri);
             $result = json_decode($json, true);
 

@@ -7,6 +7,6 @@ use Pine\Wechat\Server\WXWebpage;
 
 class WechatServer
 {
-    use WXInitToken,WXWebpage,WXJsapiJSSDK;
+    use WXApiUrl,WXInitToken,WXWebpage,WXJsapiJSSDK;
 }
 
