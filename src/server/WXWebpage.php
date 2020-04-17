@@ -37,6 +37,7 @@ trait WXWebpage
      *
      * @param $code
      * @return mixed
+     * @throws \Exception
      */
     public function getCodeToken($code)
     {
@@ -53,23 +54,20 @@ trait WXWebpage
 
                 return $result;
             } else {
-                throw new \LogicException('请求失败');
+                throw new \Exception('请求失败');
             }
         } else {
-            throw new \LogicException('code为空');
+            throw new \Exception('code为空');
         }
     }
 
-    /**
-     * 网页授权,刷新CodeToken
-     *
-     * @return mixed
-     */
+
     /**
      * 网页授权,刷新CodeToken
      *
      * @param $refresh_token
      * @return mixed
+     * @throws \Exception
      */
     public function refreshCodeToken($refresh_token)
     {
@@ -81,10 +79,10 @@ trait WXWebpage
             if ($respond->getStatusCode() === 200) {
                 return json_decode($respond->getBody()->getContents(), true);
             } else {
-                throw new \LogicException('请求失败');
+                throw new \Exception('请求失败');
             }
         } else {
-            throw new \LogicException('refresh_token不能为空');
+            throw new \Exception('refresh_token不能为空');
         }
     }
 
