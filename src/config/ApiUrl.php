@@ -1,7 +1,8 @@
 <?php
-namespace Pine\Wechat;
+namespace Pine\Wechat\Config;
 
-trait WXApiUrl
+
+trait ApiUrl
 {
     /**
      * 通用域名
@@ -38,5 +39,29 @@ trait WXApiUrl
      */
     public static $hk_uri = 'https://hk.api.weixin.qq.com';
 
+
+    /**
+     * @Author RJie
+     * @param string $method
+     * @param $uri
+     * @param array $params
+     * @return mixed
+     * @throws \Exception
+     */
+    public function ApiRequest($method = 'get',$uri,$params = [])
+    {
+        if($method == 'get') {
+            $respond = $this->client->request($method, $uri);
+        }else{
+            $respond = $this->client->request('post', $uri,['form_params' => $params]);
+        }
+        if ($respond->getStatusCode() === 200) {
+            $result = json_decode($respond->getBody()->getContents(), true);
+
+            return $result;
+        } else {
+            throw new \Exception('请求失败');
+        }
+    }
 
 }

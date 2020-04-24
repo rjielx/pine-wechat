@@ -7,25 +7,6 @@ use Illuminate\Support\Facades\Cache;
 
 trait WXInitToken
 {
-    protected $config = [];
-
-    protected $client;
-
-    /**
-     * WechatServer constructor.
-     * @param $appid 微信公众号APPID
-     * @param $appsecret 微信公众号密钥
-     */
-    public function __construct($appid, $appsecret)
-    {
-        $this->config = [
-            'appID' => $appid,
-            'appsecret' => $appsecret
-        ];
-        $this->client = new Client();
-    }
-
-
     /**
      * 获取微信公众号access_token
      *
